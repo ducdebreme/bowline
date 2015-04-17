@@ -1,5 +1,5 @@
 #
-# PHP 5.4
+# PHP 5.5
 # - also includes Apache, Composer, Drupal configuration
 #
 
@@ -13,9 +13,11 @@ RUN dpkg-divert --local --rename --add /sbin/initctl
 RUN ln -sf /bin/true /sbin/initctl
 
 # Packages.
-RUN apt-get update && \
-  apt-get -y install git mysql-client apache2 libapache2-mod-php5 wget curl \
-    php5-curl php5-gd php5-mysql php5-sqlite php5-pgsql php-apc php-pear php5-xdebug \
+RUN echo "deb http://packages.dotdeb.org wheezy-php55 all" >> /etc/apt/sources.list && \
+  echo "deb-src http://packages.dotdeb.org wheezy-php55 all" >> /etc/apt/sources.list  && \
+  apt-get update && \
+  apt-get -y --force-yes install git mysql-client apache2 libapache2-mod-php5 wget curl \
+    php5-curl php5-gd php5-mysql php5-sqlite php5-pgsql php-pear php5-xdebug \
     pwgen sudo python-setuptools nano apt-utils tidy vim pv && \
   apt-get autoclean && apt-get autoremove
 
@@ -47,7 +49,6 @@ RUN chmod 755 /etc/apache2/foreground.sh
 ADD ./conf/apache2/vhost.conf /etc/apache2/sites-available/default
 ADD ./conf/php5/apache2.ini /etc/php5/apache2/php.ini
 ADD ./conf/php5/cli.ini /etc/php5/cli/php.ini
-ADD ./conf/php5/apc.ini /etc/php5/conf.d/apc.ini
 
 # Drupal.
 ADD ./conf/drupal/settings.docker.php /etc/settings.docker.php
