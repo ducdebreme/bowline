@@ -1,5 +1,7 @@
 db:
   image: mysql:5.5
+  ports:
+    - "5001:3306"
   environment:
     - MYSQL_ROOT_PASSWORD=root
     - MYSQL_USER=dbuser
@@ -9,23 +11,26 @@ db:
   volumes:
     - .docker/etc/my.cnf:/etc/my.cnf
   hostname: dbhost
-  expose:
-    - "3306"
   dns:
     - 8.8.8.8
     - 8.8.4.4
+solr:
+  hostname: solrhost
+  image: ducdebreme/solr4_slim
+  ports:
+    - "5002:8983"
 web:
-  image: davenuman/bowline-web-php:latest
+  image: ducdebreme/bowline-web-php:5.5
+  ports:
+    - "5000:80"
   command: /start.sh
   environment:
     - COMPOSER_HOME=/.composer
-  expose:
-    - "80"
-    - "9000"
   volumes:
     - .:/var/www
   links:
     - db:dbhost
+    - solr:solrhost
   hostname: drupal
   dns:
     - 8.8.8.8
