@@ -106,7 +106,7 @@ bowline
 drush st
 ```
 
-**Important:** the nginx proxy will not start if you have something else using port 80. You must either stop your other service (recommended) or edit the port in `lib/proxy/docker-composer.yml` file to something other than 80.
+**Important:** the nginx proxy will not start if you have something else using port 80. You must either stop your other service (recommended) or edit the port in `lib/proxy/docker-compose.yml` file to something other than 80.
 
 ## Post-Install: Test and document your development sandbox
 1. Review [sandbox.md](sandbox.md ) which is indented to become your instructions for your development team. It will need to be modified to the specifics of your project.

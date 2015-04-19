@@ -34,12 +34,12 @@ bowline_init () {
   ### @@ Note, everytime the ip changes the following should run
   # Add some useful container env
   check_build
-  fig_containers=$(grep '^\S*:' docker-composer.yml)
+  fig_containers=$(grep '^\S*:' docker-compose.yml)
   unset containers
   for c in $fig_containers; do
     name="${c%:}"
     container_name="$(get_container_name ${name})"
-    # Set variables such as $web and $db from the docker-composer.yml.
+    # Set variables such as $web and $db from the docker-compose.yml.
     export "${name}=${container_name}"
     # Set IP addresses if they are available.
     if [ "$CONTAINERS_BUILT" ];then
