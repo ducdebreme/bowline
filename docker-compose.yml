@@ -15,7 +15,7 @@ db:
     - 8.8.8.8
     - 8.8.4.4
 web:
-  image: davenuman/bowline-web-php:latest
+  image: ducdebreme/bowline-web-php:latest
   command: /start.sh
   environment:
     - COMPOSER_HOME=/.composer

@@ -5,14 +5,14 @@
   - Make sure you can successfully run docker commands without sudo. See [Ubuntu example](https://docs.docker.com/installation/ubuntulinux/#giving-non-root-access).
 1. [Fig](http://www.fig.sh/)
 
-See also the [wiki](https://github.com/davenuman/bowline/wiki) for [platform-specific instructions](https://github.com/davenuman/bowline/wiki/Platform-specific-instructions).
+See also the [wiki](https://github.com/ducdebreme/bowline/wiki) for [platform-specific instructions](https://github.com/ducdebreme/bowline/wiki/Platform-specific-instructions).
 
 ## Install Instructions
 
 ### New Drupal Project
 Clone this repo. Change myproject to the name of your project:
 ```bash
-git clone git@github.com:davenuman/bowline.git myproject
+git clone https://github.com/ducdebreme/bowline.git myproject
 cd myproject
 ```
 
@@ -39,7 +39,7 @@ drush uli  # Get a login url.
 1. Go to your project workspace. Make sure your git working directory is clean with `git status` and you might want to try this in a new branch for testing first with `git checkout -b dockerize`.
 Add this repository as a remote:
 ```
-git remote add bowline git@github.com:davenuman/bowline.git
+git remote add bowline https://github.com/ducdebreme/bowline.git
 git remote update
 ```
 
