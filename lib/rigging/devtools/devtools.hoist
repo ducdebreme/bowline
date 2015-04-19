@@ -7,6 +7,6 @@ echo "# Installing scripts"
 cp -av lib/rigging/devtools/bin/* bin
 
 echo "# Adding config"
-echo "devtools:" >> fig.yml
-echo "  image: davenuman/bowline-devtools" >> fig.yml
-echo "  command: /usr/local/bin/node devtools.js" >> fig.yml
+echo "devtools:" >> docker-composer.yml
+echo "  image: davenuman/bowline-devtools" >> docker-composer.yml
+echo "  command: /usr/local/bin/node devtools.js" >> docker-composer.yml
