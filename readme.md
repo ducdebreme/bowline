@@ -28,7 +28,7 @@ Start a new git repo then add bowline as a remote. Change myproject to the name 
 mkdir myproject
 cd myproject
 git init
-git remote add bowline git@github.com:davenuman/bowline.git
+git remote add bowline https://github.com/ducdebreme/bowline.git
 git remote update
 ```
 
@@ -67,7 +67,7 @@ drush uli  # Get a login url.
 1. Go to your project workspace. Make sure your git working directory is clean with `git status` and you might want to try this in a new branch for testing first with `git checkout -b dockerize`.
 Add this repository as a remote:
 ```
-git remote add bowline git@github.com:davenuman/bowline.git
+git remote add bowline https://github.com/ducdebreme/bowline.git
 git remote update
 ```
 
