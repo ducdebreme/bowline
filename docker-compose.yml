@@ -9,8 +9,8 @@ db:
   volumes:
     - .docker/etc/my.cnf:/etc/my.cnf
   hostname: dbhost
-  expose:
-    - "3306"
+  ports:
+    - "6306:3306"
   dns:
     - 8.8.8.8
     - 8.8.4.4
@@ -19,8 +19,8 @@ web:
   command: /start.sh
   environment:
     - COMPOSER_HOME=/.composer
-  expose:
-    - "80"
+  ports:
+    - "6080:80"
     - "9000"
   volumes:
     - .:/var/www
