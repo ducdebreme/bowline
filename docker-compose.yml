@@ -10,22 +10,30 @@ db:
     - .docker/etc/my.cnf:/etc/my.cnf
   hostname: dbhost
   ports:
-    - "6306:3306"
+    - "7306:3306"
+  dns:
+    - 8.8.8.8
+    - 8.8.4.4
+solr:
+  image: ducdebreme/solr4_slim
+  expose:
+    - "8983"
   dns:
     - 8.8.8.8
     - 8.8.4.4
 web:
-  image: davenuman/bowline-web-php:latest # NOTE this used php 5.4
+  image: ducdebreme/bowline-web-php:5.5 # NOTE php 5.5
   command: /start.sh
   environment:
     - COMPOSER_HOME=/.composer
   ports:
-    - "6080:80"
+    - "7080:80"
     - "9000"
   volumes:
     - .:/var/www
   links:
     - db:dbhost
+    - solr:solrhost
   hostname: drupal
   dns:
     - 8.8.8.8
