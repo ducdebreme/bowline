@@ -3,7 +3,7 @@
 ## Requirements
 1. [Docker](https://www.docker.com/)
   - Make sure you can successfully run docker commands without sudo. See [Ubuntu example](https://docs.docker.com/installation/ubuntulinux/#giving-non-root-access).
-1. [Fig](http://www.fig.sh/)
+1. [Docker Compose](http://docs.docker.com/compose/)
 
 See also the [wiki](https://github.com/davenuman/bowline/wiki) for [platform-specific instructions](https://github.com/davenuman/bowline/wiki/Platform-specific-instructions).
 
@@ -28,7 +28,7 @@ Start a new git repo then add bowline as a remote. Change myproject to the name 
 mkdir myproject
 cd myproject
 git init
-git remote add bowline https://github.com/ducdebreme/bowline.git
+git remote add bowline git@github.com:davenuman/bowline.git
 git remote update
 ```
 
@@ -67,7 +67,7 @@ drush uli  # Get a login url.
 1. Go to your project workspace. Make sure your git working directory is clean with `git status` and you might want to try this in a new branch for testing first with `git checkout -b dockerize`.
 Add this repository as a remote:
 ```
-git remote add bowline https://github.com/ducdebreme/bowline.git
+git remote add bowline git@github.com:davenuman/bowline.git
 git remote update
 ```
 
@@ -106,7 +106,7 @@ bowline
 drush st
 ```
 
-**Important:** the nginx proxy will not start if you have something else using port 80. You must either stop your other service (recommended) or edit the port in `lib/proxy/docker-compose.yml` file to something other than 80.
+**Important:** the nginx proxy will not start if you have something else using port 80. You must either stop your other service (recommended) or edit the port in `lib/proxy/fig.yml` file to something other than 80.
 
 ## Post-Install: Test and document your development sandbox
 1. Review [sandbox.md](sandbox.md ) which is indented to become your instructions for your development team. It will need to be modified to the specifics of your project.

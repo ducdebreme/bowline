@@ -42,6 +42,7 @@ ADD ./conf/scripts/foreground.sh /etc/apache2/foreground.sh
 # Apache.
 RUN rm -rf /var/www/*
 RUN chmod 755 /etc/apache2/foreground.sh
+RUN chmod 755 /start.sh
 
 # Apache / PHP.
 ADD ./conf/apache2/vhost.conf /etc/apache2/sites-available/default
@@ -49,17 +50,16 @@ ADD ./conf/php5/apache2.ini /etc/php5/apache2/php.ini
 ADD ./conf/php5/cli.ini /etc/php5/cli/php.ini
 ADD ./conf/php5/apc.ini /etc/php5/conf.d/apc.ini
 
-# Drupal.
-ADD ./conf/drupal/settings.docker.php /etc/settings.docker.php
-
 # Xdebug settings.
 RUN \
   echo xdebug.remote_enable=1 >> /etc/php5/mods-available/xdebug.ini && \
   echo xdebug.remote_connect_back=1 >> /etc/php5/mods-available/xdebug.ini && \
   echo xdebug.remote_autostart=0 >> /etc/php5/mods-available/xdebug.ini && \
+  echo xdebug.max_nesting_level=256 >> /etc/php5/mods-available/xdebug.ini && \
   echo xdebug.remote_log=/var/www/logs/xdebug.log >> /etc/php5/mods-available/xdebug.ini
 
 EXPOSE 80
 
-# Start apache.
-RUN chmod 755 /start.sh
+# Set a custom entrypoint.
+COPY ./docker-entrypoint.sh /
+ENTRYPOINT ["/docker-entrypoint.sh"]
