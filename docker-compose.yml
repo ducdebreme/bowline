@@ -15,15 +15,15 @@ db:
     - 8.8.8.8
     - 8.8.4.4
 web:
-  image: davenuman/bowline-web-php:latest # NOTE this used php 5.4
-  command: /start.sh
+  image: ducdebreme/php-drupal:5.6
   environment:
     - COMPOSER_HOME=/.composer
   ports:
     - "6080:80"
-    - "9000"
   volumes:
+    #- .docker/php-drupal/php.ini:/usr/local/etc/php/php.ini
     - .:/var/www
+    # - .docker/web/apache.conf:/etc/apache2/sites-enabled/apache.conf
   links:
     - db:dbhost
   hostname: drupal
