@@ -16,4 +16,4 @@ cmd='bash'
 [[ "$@" ]] && cmd=$@
 
 echo "Running '${cmd}' inside container"
-docker exec -it ${web} sudo -iu www-data ${cmd}
+docker exec -u www-data -it ${web} ${cmd}

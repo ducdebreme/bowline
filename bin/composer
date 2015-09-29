@@ -3,9 +3,6 @@
 source $(dirname $0)/../lib/bowline/bowline
 assert_running
 
-#docker exec -it ${web} sudo -iu www-data composer --working-dir=/var/www $@
-
-
 #Run Composer through the Composer container:
 # @see https://hub.docker.com/r/composer/composer/
 docker run --rm=true -v $(pwd):/app -e "COMPOSER_HOME=/app"  composer/composer  $@
