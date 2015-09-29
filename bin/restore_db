@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+#
+# Fast db restore
+# restore_db <SQL_FILE_PATH_FROM_BOWLINE_HOME> <DB_NAME>
+# If <DB_NAME> is empty it will restore into the db name defined by settings.php
+#
+source $(dirname $0)/../lib/bowline/bowline
+enter_container $@
+
+FILEPATH=$1
+DB=$2
+
+DROPSTATEMENT=""
+
+if [ ! -z "$DB" ]; then
+	DROPSTATEMENT="drop schema if exists $DB; create schema $DB;USE $DB;"
+fi
+
+
+
+echo "Restoring file $FILEPATH into $DB"
+
+[ "$PROXY_HOST_SET" ] && DRUSH_URI="http://${BOWLINE}.localtest.me" || DRUSH_URI="http://${web_ip}/"
+
+cat \
+    <(echo "$DROPSTATEMENT") \
+    <(echo "SET UNIQUE_CHECKS=0;SET FOREIGN_KEY_CHECKS=0;") \
+    <(cat $FILEPATH | tee) \
+    <(echo ";SET FOREIGN_KEY_CHECKS=1;SET UNIQUE_CHECKS=1;") \
+    | mysql -u"$MYSQL_ROOT_USER" -p"$MYSQL_ROOT_PASSWORD" -h"$DBHOST_PORT_3306_TCP_ADDR"
