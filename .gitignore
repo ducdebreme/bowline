@@ -50,3 +50,7 @@ tests/behat/local.yml
 cache
 docroot
 html
+.env
+
+composer.lock
+composer.json
