@@ -5,4 +5,4 @@ assert_running
 
 #Run Composer through the Composer container:
 # @see https://hub.docker.com/r/composer/composer/
-docker run --rm=true -v $(pwd):/app -e "COMPOSER_HOME=/app"  composer/composer  $@
+docker run --rm=true -v $(pwd):/app -e "COMPOSER_HOME=/app" -e "http_proxy=$http_proxy" -e "https_proxy=$https_proxy"  composer/composer  $@
