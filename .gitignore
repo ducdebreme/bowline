@@ -51,6 +51,8 @@ cache
 docroot
 html
 .env
+solr
+solr-data
 
 composer.lock
 composer.json
