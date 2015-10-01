@@ -3,7 +3,8 @@
 source $(dirname $0)/../lib/bowline/bowline
 enter_container
 
-chown -R -c www-data:www-data /var/www
+chgrp -R -c www-data /var/www
+chmod -R g+rw /var/www
 
 echo "File permissions set to www-data:"
 id www-data
