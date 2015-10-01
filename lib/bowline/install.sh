@@ -35,7 +35,7 @@ if [ ! -e "lib/bowline" ]; then
   git commit -m 'Adding bowline code'
 fi
 
-if [ ! -e "$DOCROOT" ] && [ -e "html" ]; then
+if [ ! -e "$DOCROOT" ]; then
   echo "Bowline is configured for Drupal to be in the $DOCROOT directory but it looks like you have an html directory."
   echo "This script will move the html directory to $DOCROOT and create a symlink at html to it."
   read_continue
