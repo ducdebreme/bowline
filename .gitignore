@@ -48,8 +48,8 @@ tests/behat/local.yml
 
 .idea
 cache
-docroot
-html
+docroot/*
+html/*
 .env
 solr
 solr-data

@@ -2,7 +2,7 @@
 
 source $(dirname $0)/../lib/bowline/bowline
 
-settingspath=$GIT_ROOT/docroot/sites/default
+settingspath=$GIT_ROOT/$DOCROOT/sites/default
 
 if [ ! -d "${settingspath}" ];then
   echo "Looks like Drupal isn't installed. Would you like to install it? [Y,n,7,8]"
@@ -18,8 +18,8 @@ if [ ! -d "${settingspath}" ];then
     composer global require drush/drush:dev-master
   fi
   drush dl --destination=/var/www $version
-  [ -d "docroot" ] && mv -v docroot old-docroot
-  mv -v drupal-* docroot
+  [ -d "$DOCROOT" ] && mv -v $DOCROOT old-$DOCROOT
+  mv -v drupal-* $DOCROOT
 fi
 
 if [ ! -f "${settingspath}/settings.php" ];then

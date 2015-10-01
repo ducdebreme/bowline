@@ -7,7 +7,7 @@ enter_container
 echo -e "\033[32m# RUNNING TESTS\033[m"
 
 # Check Drush.
-cd docroot
+cd $DOCROOT
 echo -e "\033[34mdrush status:"
 ../vendor/bin/drush st
 echo -e "\033[m"

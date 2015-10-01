@@ -60,6 +60,9 @@ bowline_init () {
     fi
     export containers="${containers} ${name}"
   done
+
+  # make the .env file available
+  source .env
 }
 
 [ $context = "host" ] && bowline_init

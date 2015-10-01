@@ -35,13 +35,13 @@ if [ ! -e "lib/bowline" ]; then
   git commit -m 'Adding bowline code'
 fi
 
-if [ ! -e "docroot" ] && [ -e "html" ]; then
-  echo "Bowline is configured for Drupal to be in the docroot directory but it looks like you have an html directory."
-  echo "This script will move the html directory to docroot and create a symlink at html to it."
+if [ ! -e "$DOCROOT" ] && [ -e "html" ]; then
+  echo "Bowline is configured for Drupal to be in the $DOCROOT directory but it looks like you have an html directory."
+  echo "This script will move the html directory to $DOCROOT and create a symlink at html to it."
   read_continue
-  mv html docroot
-  ln -sv docroot html
-  ls -ld docroot html
+  mv html $DOCROOT
+  ln -sv $DOCROOT html
+  ls -ld $DOCROOT html
 fi
 
 echo -e "Bowline is now installed into your project repository.\n"
@@ -55,7 +55,7 @@ echo -e "Build complete\n"
 read_continue "Would you like to initialize the Drupal settings file? [Y/n]"
 settings_init
 echo -e "Settings initialized\n"
-if [ -e "docroot/core/CHANGELOG.txt" ];then
+if [ -e "$DOCROOT/core/CHANGELOG.txt" ];then
   # Drupal 8 needs newer drush
   composer global require drush/drush:dev-master
   echo -e "Drush updated for drupal 8.\n"

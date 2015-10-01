@@ -10,7 +10,7 @@ fi
 # Make sure we have latest drush for D8.
 composer global require drush/drush:dev-master
 
-[ -e docroot ] && mv -v docroot docroot.backup-$$
-git clone --branch 8.0.x http://git.drupal.org/project/drupal.git docroot
+[ -e $DOCROOT ] && mv -v $DOCROOT $DOCROOT.backup-$$
+git clone --branch 8.0.x http://git.drupal.org/project/drupal.git $DOCROOT
 
 echo For more details please see: https://www.drupal.org/project/drupal/git-instructions
