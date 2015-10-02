@@ -1,11 +1,17 @@
 #!/usr/bin/env bash
 
 source $(dirname $0)/../lib/bowline/bowline
+source ${GIT_ROOT}/.env
 assert_running
 assert_composer
+
+
 
 check_proxy
 [ "$PROXY_HOST_SET" ] && DRUSH_URI="http://${BOWLINE}.localtest.me" || DRUSH_URI="http://${web_ip}/"
 
 echo "Running 'drush $@' inside container, using uri: ${DRUSH_URI}"
-docker exec -u www-data -it ${web} bash -c "export http_proxy=$http_proxy && export https_proxy=$https_proxy && /var/www/vendor/drush/drush/drush --root=/var/www/$DOCROOT --uri=${DRUSH_URI} $@"
+
+# using $* insteand of $@
+# @see http://stackoverflow.com/questions/12314451/accessing-bash-command-line-args-vs
+docker exec -u www-data -it ${web} bash -c "export http_proxy=$http_proxy && export https_proxy=$https_proxy && /var/www/vendor/drush/drush/drush --root=/var/www/$DOCROOT --uri=${DRUSH_URI} $* " 
