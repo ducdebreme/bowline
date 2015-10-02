@@ -19,12 +19,14 @@ if [ ! -d "${settingspath}" ];then
   fi
   drush dl --destination=/var/www $version
 
-  [ -d "$DOCROOT" ] && mv -v $DOCROOT old-$DOCROOT
-  sudo mv -v drupal-* $DOCROOT
+  [ -d "$DOCROOT" ] && mv -v $DOCROOT old-$DOCROOT && mv -v drupal-* $DOCROOT
+
+  fix-perms
+  fix-perms-host
 fi
 
 if [ ! -f "${settingspath}/settings.php" ];then
-  sudo cp -v ${settingspath}/default.settings.php ${settingspath}/settings.php
+  cp -v ${settingspath}/default.settings.php ${settingspath}/settings.php
 fi
 
 if [ ! "$(grep settings.docker.php ${settingspath}/settings.php)" ]; then
