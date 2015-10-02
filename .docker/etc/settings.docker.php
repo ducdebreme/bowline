@@ -9,9 +9,9 @@ $db_url = 'mysql://dbuser:dbpass@dbhost/drupal';
 // Drupal 7 db settings.
 $databases['default']['default'] = array(
   'driver' => 'mysql',
-  'database' => 'drupal',
-  'username' => 'dbuser',
-  'password' => 'dbpass',
+  'database' => $_ENV['MYSQL_DATABASE'],
+  'username' => $_ENV['MYSQL_USER'],
+  'password' => $_ENV['MYSQL_PASSWORD'],
   'host' => 'dbhost',
 );
 // Set the host to the proxied container IP.
@@ -20,3 +20,4 @@ $databases['default']['default'] = array(
 $conf['file_private_path'] = '/var/www/files-private';
 $conf['file_public_path'] = 'sites/default/files';
 $conf['file_temporary_path'] = '/tmp';
+
