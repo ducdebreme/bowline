@@ -83,7 +83,7 @@ assert_composer () {
     # docker exec -it ${web} chown -R www-data:www-data /var/www
     # docker exec -it ${web} chown www-data:www-data /usr/local/bin/composer.phar
     # docker exec -it ${web} sudo -iu www-data composer --working-dir=/var/www self-update
-    # docker exec -it ${web} sudo -iu www-data composer --working-dir=/var/www install
+    composer install
   fi
 }
 
