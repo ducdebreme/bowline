@@ -15,8 +15,8 @@ solr:
   hostname: solrhost
   image: ducdebreme/solr4_slim
   volumes:
-    - solr:/etc/conf/solr-index
-    - solr-data:/var/solr/example/solr/collection1/data
+    - ./solr:/etc/conf/solr-index
+    - ./solr-data:/var/solr/example/solr/collection1/data
   ports:
     - "5002:8983"
 web:
@@ -28,7 +28,7 @@ web:
     - COMPOSER_HOME=/.composer
   volumes:
     - .:/var/www
-    - .docker/etc/php-custom.ini:/usr/local/etc/php/conf.d/php-custom.ini
+    - ./.docker/etc/php-custom.ini:/usr/local/etc/php/conf.d/php-custom.ini
   links:
     - db:dbhost
     - solr:solrhost
