@@ -56,3 +56,4 @@ solr-data
 
 composer.lock
 composer.json
+.mysql_history
