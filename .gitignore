@@ -45,3 +45,9 @@ tests/behat/local.yml
 /vendor
 /.composer
 
+drush-backups
+.ssh
+.idea
+.mysql_history
+.bash_history
+
