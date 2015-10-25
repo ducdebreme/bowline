@@ -51,3 +51,6 @@ drush-backups
 .mysql_history
 .bash_history
 
+composer.lock
+composer.json
+docroot
