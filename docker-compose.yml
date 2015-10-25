@@ -19,7 +19,12 @@ solr:
     - ./solr-data:/var/solr/example/solr/collection1/data
   ports:
     - "5002:8983"
+memcache:
+  image: memcached
+  expose: 
+    - "11211"
 web:
+  hostname: drupal
   image: ducdebreme/php-drupal:5.6
   ports:
     - "5000:80"
@@ -32,7 +37,7 @@ web:
   links:
     - db:dbhost
     - solr:solrhost
-  hostname: drupal
+    - memcache:memcache
   # dns:
   #   - 8.8.8.8
   #   - 8.8.4.4
