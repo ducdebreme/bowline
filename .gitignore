@@ -35,6 +35,10 @@ ehthumbs.db
 Icon?
 Thumbs.db
 
+# Composer
+/vendor
+/.composer
+
 # Other #
 #########
 tests/behat/local.yml
@@ -54,3 +58,4 @@ drush-backups
 composer.lock
 composer.json
 docroot
+.bash_history
