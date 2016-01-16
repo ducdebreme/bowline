@@ -6,6 +6,9 @@ enter_container sudo
 chgrp -R -c www-data /var/www
 chmod -R g+rw /var/www
 
+chmod 700 /var/www/.ssh
+chmod -R 600 /var/www/.ssh
+
 echo "File permissions set to www-data:"
 id www-data
 exit 0
